@@ -13,6 +13,11 @@ import {
   AlertCircle,
   Loader,
 } from "lucide-react";
+import {
+  validateAvatar,
+  validateEmail,
+  validatePassword,
+} from "../../utils/helper";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -49,20 +54,117 @@ const SignUp = () => {
   };
 
   const handleRoleChange = (role) => {
-
+    setFormData((prev) => ({ ...prev, role }));
+    if (formState.errors.role) {
+      setFormState((prev) => ({
+        ...prev,
+        errors: { ...prev.errors, role: "" },
+      }));
+    }
   }
 
   const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const error = validateAvatar(file);
+      if (error) {
+        setFormState((prev) => ({
+          ...prev,
+          errors: { ...prev.errors, avatar: error },
+        }));
+        return;
+      }
 
+      setFormData((prev) => ({ ...prev, avatar: file }));
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setFormState((prev) => ({
+          ...prev,
+          avatarPreview: e.target.result,
+          errors: { ...prev.errors, avatar: "" },
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   const validateForm = () => {
+    const errors = {
+      fullName: !formData.fullName ? "Enter full name" : "",
+      email: validateEmail(formData.email),
+      password: validatePassword(formData.password),
+      role: !formData.role ? "Please select a role" : "",
+      avatar: "",
+    };
 
+    // Remove empty errors
+    Object.keys(errors).forEach((key) => {
+      if (!errors[key]) delete errors[key];
+    });
+
+    setFormState((prev) => ({ ...prev, errors }));
+    return Object.keys(errors).length === 0;
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  }
+    if (!validateForm()) return;
+
+    setFormState((prev) => ({ ...prev, loading: true }));
+
+    try {
+      let avatarUrl = "";
+
+      // Upload image if present
+      if (formData.avatar) {
+        const imgUploadRes = await uploadImage(formData.avatar);
+        avatarUrl = imgUploadRes.imageUrl || "";
+      }
+
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        name: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+        role: formData.role,
+        avatar: avatarUrl || "",
+      });
+
+      // Handle successful registration
+      setFormState((prev) => ({
+        ...prev,
+        loading: false,
+        success: true,
+        errors: {},
+      }));
+
+      const { token } = response.data;
+
+      if (token) {
+        login(response.data, token);
+
+        // Redirect based on role
+        setTimeout(() => {
+          window.location.href =
+            formData.role === "employer" ? "/employer-dashboard" : "/find-jobs";
+        }, 2000);
+      }
+    } catch (error) {
+      console.log("error", error);
+
+      setFormState((prev) => ({
+        ...prev,
+        loading: false,
+        errors: {
+          submit:
+            error.response?.data?.message ||
+            "Registration failed. Please try again.",
+        },
+      }));
+    }
+  };
 
 
 
