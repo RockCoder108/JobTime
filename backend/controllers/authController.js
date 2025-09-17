@@ -30,7 +30,7 @@ const register = async(req, res) => {
         });
 
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -54,8 +54,8 @@ const login = async(req, res) => {
         companyLogo: user.companyLogo || "",
         resume: user.resume || "",
       });
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
 };
 

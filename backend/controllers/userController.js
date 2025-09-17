@@ -34,7 +34,7 @@ export const updateProfile = async (req, res) => {
       resume: user.resume || "",
     });
   } catch (error) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -68,7 +68,7 @@ export const deleteResume = async (req, res) => {
 
       res.json({ message: "Resume deleted successfully" });
     } catch (error) {
-      res.status(500).json({ message: err.message });
+      res.status(500).json({ message: error.message });
     }
 }
 
@@ -81,6 +81,6 @@ export const getPublicProfile = async (req, res) => {
 
       res.json(user);
     } catch (error) {
-      res.status(500).json({ message: err.message });
+      res.status(500).json({ message: error.message });
     }
 }
