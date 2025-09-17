@@ -1,7 +1,7 @@
-import Job from "../models/Job.js";
-import User from "../models/User.js";
-import Application from "../models/Application.js";
-import SavedJob from "../models/SavedJob.js";
+import { Job } from "../models/Job.js";
+import { User } from "../models/User.js";
+import { Application } from "../models/Application.js";
+import { SavedJob } from "../models/SavedJob.js";
 
 
 // Create a new job (Employer only)

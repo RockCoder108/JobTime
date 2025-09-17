@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import User from '../models/User.js';
+import { User } from '../models/User.js';
 
 
 //  Update user profile (name, avatar, company details)

@@ -1,5 +1,5 @@
-import { Job } from "../models/Job";
-import Application from "../models/Application.js";
+import { Job }  from "../models/Job.js";
+import { Application } from "../models/Application.js";
 
 const getTrend = (current, previous) => {
   if (previous === 0) return current > 0 ? 100 : 0;
