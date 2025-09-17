@@ -8,6 +8,8 @@ import userRoutes from "./routes/userRoutes.js";
 
 import jobRoutes from "./routes/jobRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
+import savedJobsRoutes from "./routes/savedJobsRoutes.js";
+import analyticsRoutes from "./routes/analyticsRoutes.js";
 
 
 
@@ -35,6 +37,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/jobs", jobRoutes);
 
 app.use("/api/applications", applicationRoutes);
+app.use("/api/save-jobs", savedJobsRoutes);
+app.use("/api/analytics", analyticsRoutes);
 
 
 
