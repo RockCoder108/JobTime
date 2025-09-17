@@ -17,13 +17,14 @@ import ManageJobs from "./pages/Employer/ManageJobs";
 import EmployerProfilePage from "./pages/Employer/EmployerProfilePage";
 import ApplictionViewer from "./pages/Employer/ApplictionViewer";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   
 
   return (
     <>
-      <div>
+      <AuthProvider>
         <Router>
           <Routes>
             {/* Public api */}
@@ -59,7 +60,7 @@ function App() {
             },
           }}
         />
-      </div>
+      </AuthProvider>
     </>
   );
 }

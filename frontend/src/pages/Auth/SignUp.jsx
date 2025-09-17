@@ -18,8 +18,14 @@ import {
   validateEmail,
   validatePassword,
 } from "../../utils/helper";
+import axiosInstance from "../../utils/axiosInstance";
+import { useAuth } from "../../context/AuthContext";
+import { API_PATHS } from "../../utils/apiPaths";
+import uploadImage from "../../utils/uploadImage";
 
 const SignUp = () => {
+  const { login } = useAuth();
+  
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
