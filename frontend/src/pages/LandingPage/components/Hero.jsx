@@ -14,7 +14,7 @@ const Hero = () => {
       { icon: TrendingUp, label: "Jobs Posted", value: "150K+" },
     ];
   return (
-    <section className="pt-24 pb-16 bg-white min-h-screen flex items-center">
+    <section className="pt-24 pb-16 bg-gray-10 min-h-screen flex items-center">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Heading */}
@@ -107,9 +107,9 @@ const Hero = () => {
 
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-30" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-100 rounded-full blur-3xl opacity-30" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-50 to-purple-50 rounded-full blur-3xl opacity-20" />
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-300 rounded-full blur-xl opacity-60" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-300 rounded-full blur-xl opacity-60" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full blur-xl opacity-40" />
       </div>
     </section>
   );

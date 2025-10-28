@@ -15,7 +15,7 @@ import EmployerDashboard from "./pages/Employer/EmployerDashboard";
 import JobPostingForm from "./pages/Employer/JobPostingForm";
 import ManageJobs from "./pages/Employer/ManageJobs";
 import EmployerProfilePage from "./pages/Employer/EmployerProfilePage";
-import ApplictionViewer from "./pages/Employer/ApplictionViewer";
+import ApplicationViewer from "./pages/Employer/ApplicationViewer";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -33,21 +33,21 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             <Route path="/find-jobs" element={<JobSeekerDashboard />} />
-            <Route path="/jod/:jobId" element={<JobDetails />} />
+            <Route path="/job/:jobId" element={<JobDetails />} />
             <Route path="/saved-jobs" element={<SavedJobs />} />
             <Route path="/profile" element={<UserProfile />} />
 
             {/* Protected Routes */}
-            <Route element={<ProtectedRoute requiedRole="employer" />}>
+            <Route element={<ProtectedRoute requiredRole="employer" />}>
               <Route path="/employer-dashboard" element={<EmployerDashboard />} />
               <Route path="/post-job" element={<JobPostingForm />} />
               <Route path="/manage-jobs" element={<ManageJobs />} />
-              <Route path="/applicants" element={<ApplictionViewer />} />
+              <Route path="/applicants" element={<ApplicationViewer />} />
               <Route path="/company-profile" element={<EmployerProfilePage />} />
             </Route>
 
 
-            {/* Catch all route */}
+            {/* Catch all route/Fallback Route */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>

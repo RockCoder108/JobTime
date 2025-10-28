@@ -4,7 +4,7 @@ import { Briefcase } from "lucide-react";
 import { useNavigate } from "react-router-dom"
 
 const Header = () => {
-    const isAuthenticated = true
+    const isAuthenticated = false; // Replace with actual authentication logic
     const user = {fullName: "Alex", role: "employer"}
     const navigate = useNavigate();
   return (
