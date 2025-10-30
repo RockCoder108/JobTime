@@ -22,11 +22,10 @@ export const API_PATHS = {
     UPDATE_JOB: (id) => `/api/jobs/${id}`,
     TOGGLE_CLOSE: (id) => `/api/jobs/${id}/toggle-close`,
     DELETE_JOB: (id) => `/api/jobs/${id}`,
-    DELETE_JOB: (id) => `/api/jobs/${id}`,
 
     SAVE_JOB: (id) => `/api/save-jobs/${id}`,
     UNSAVE_JOB: (id) => `/api/save-jobs/${id}`,
-    GET_SAVED_JOBS: "api/save-jobs/my",
+    GET_SAVED_JOBS: "/api/save-jobs/my",
   },
 
   APPLICATIONS: {
