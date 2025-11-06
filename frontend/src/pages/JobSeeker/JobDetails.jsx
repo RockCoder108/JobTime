@@ -1,16 +1,10 @@
-import {
-  MapPin,
-  DollarSign,
-  Building2,
-  Clock,
-  Users,
-} from "lucide-react";
+import { MapPin, DollarSign, Building2, Clock, Users } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { useEffect, useState } from "react";
-import Navbar from "../../components/layout/Navbar";
+import Navbar from "../../components/Layout/Navbar";
 import moment from "moment";
 import StatusBadge from "../../components/StatusBadge";
 import toast from "react-hot-toast";
@@ -18,7 +12,7 @@ import toast from "react-hot-toast";
 const JobDetails = () => {
   const { user } = useAuth();
   const { jobId } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [jobDetails, setJobDetails] = useState(null);
 
@@ -54,8 +48,8 @@ const JobDetails = () => {
   useEffect(() => {
     if (jobId && user) {
       getJobDetailsById();
-    } else if(!user){
-      navigate('/login')
+    } else if (!user) {
+      navigate("/login");
     }
   }, [jobId, user]);
 
@@ -186,13 +180,12 @@ const JobDetails = () => {
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default JobDetails
+export default JobDetails;

@@ -8,11 +8,10 @@ import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
 import FilterContent from "./componentss/FilterContent";
 import SearchHeader from "./componentss/SearchHeader";
-import Navbar from "../../components/layout/Navbar";
+import Navbar from "../../components/Layout/Navbar";
 import JobCard from "../../components/Cards/JobCard";
 
 const JobSeekerDashboard = () => {
-
   const { user } = useAuth();
 
   const [jobs, setJobs] = useState([]);
@@ -165,7 +164,6 @@ const JobSeekerDashboard = () => {
   );
 
   const toggleSaveJob = async (jobId, isSaved) => {
-
     try {
       if (isSaved) {
         await axiosInstance.delete(API_PATHS.JOBS.UNSAVE_JOB(jobId));
@@ -183,7 +181,6 @@ const JobSeekerDashboard = () => {
   };
 
   const applyToJob = async (jobId) => {
-
     try {
       if (jobId) {
         await axiosInstance.post(API_PATHS.APPLICATIONS.APPLY_TO_JOB(jobId));
@@ -193,7 +190,7 @@ const JobSeekerDashboard = () => {
       fetchJobs();
     } catch (err) {
       console.log("Error:", err);
-      const errorMsg = err?.response?.data?.message
+      const errorMsg = err?.response?.data?.message;
       toast.error(errorMsg || "Something went wrong! Try again later");
     }
   };
@@ -316,7 +313,7 @@ const JobSeekerDashboard = () => {
                         job={job}
                         onClick={() => navigate(`/job/${job._id}`)}
                         onToggleSave={() => toggleSaveJob(job._id, job.isSaved)}
-                        onApply={()=> applyToJob(job._id)}
+                        onApply={() => applyToJob(job._id)}
                       />
                     ))}
                   </div>
@@ -330,7 +327,7 @@ const JobSeekerDashboard = () => {
         <MobileFilterOverlay />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default JobSeekerDashboard
+export default JobSeekerDashboard;
