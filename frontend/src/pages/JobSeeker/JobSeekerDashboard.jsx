@@ -6,8 +6,8 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
-import FilterContent from "./components/FilterContent";
-import SearchHeader from "./components/SearchHeader";
+import FilterContent from "./componentss/FilterContent";
+import SearchHeader from "./componentss/SearchHeader";
 import Navbar from "../../components/layout/Navbar";
 import JobCard from "../../components/Cards/JobCard";
 
