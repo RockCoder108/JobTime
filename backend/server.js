@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-    origin: "*", // Adjust this in production to your frontend URL
+    origin: "https://job-time.vercel.app", // Adjust this in production to your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
