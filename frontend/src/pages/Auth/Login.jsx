@@ -1,6 +1,6 @@
 import React, { useState  } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Mail,
   Lock,
@@ -18,6 +18,7 @@ import axiosInstance from "../../utils/axiosInstance.js";
 
 const Login = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -101,17 +102,16 @@ const Login = () => {
 
         // Redirect based on role
         setTimeout(() => {
-          window.location.href =
-            role === "employer" ? "/employer-dashboard" : "/find-jobs";
+            navigate(role === "employer" ? "/employer-dashboard" : "/find-jobs");
         }, 2000);
       }
 
       // Redirect based on user role
-      setTimeout(() => {
-        const redirectPath =
-          user.role === "employer" ? "/employer-dashboard" : "/find-jobs";
-        window.location.href = redirectPath;
-      }, 1500);
+      // setTimeout(() => {
+      //   const redirectPath =
+      //     user.role === "employer" ? "/employer-dashboard" : "/find-jobs";
+      //   window.location.href = redirectPath;
+      // }, 1500);
     } catch (error) {
       setFormState((prev) => ({
         ...prev,
@@ -223,7 +223,7 @@ const Login = () => {
                 {formState.showPassword ? (
                   <EyeOff className="w-5 h-5" />
                 ) : (
-                  <Eye clasw-5 h-5sName="" />
+                  <Eye className="w-5 h-5" />
                 )}
               </button>
             </div>

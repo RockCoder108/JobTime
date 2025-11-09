@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   User,
   Mail,
@@ -26,6 +26,7 @@ import uploadImage from "../../utils/uploadImage";
 
 const SignUp = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();     
   
   const [formData, setFormData] = useState({
     fullName: "",
@@ -154,8 +155,7 @@ const SignUp = () => {
 
         // Redirect based on role
         setTimeout(() => {
-          window.location.href =
-            formData.role === "employer" ? "/employer-dashboard" : "/find-jobs";
+          navigate(formData.role === "employer" ? "/employer-dashboard" : "/find-jobs");
         }, 2000);
       }
     } catch (error) {
