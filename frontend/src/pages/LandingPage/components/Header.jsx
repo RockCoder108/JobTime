@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from '../../../context/AuthContext';
 
 const Header = () => {
@@ -51,8 +51,8 @@ const Header = () => {
             {isAuthenticated ? (
               <div className="flex items-center space-x-3">
                 <span className="text-gray-700">Welcome, {user?.fullName}</span>
-                <a
-                  href={
+                <Link
+                  to={
                     user?.role === "employer"
                       ? "/employer-dashboard"
                       : "/find-jobs"
@@ -60,22 +60,22 @@ const Header = () => {
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   Dashboard
-                </a>
+                </Link>
               </div>
             ) : (
               <>
-                <a
-                  href="/login"
+                <Link
+                  to="/login"
                   className="text-gray-600 hover:text-gray-900 transition-colors font-medium px-4 py-2 rounded-lg hover:bg-gray-50"
                 >
                   Login
-                </a>
-                <a
-                  href="/signup"
+                </Link>
+                <Link
+                  to="/signup"
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   Sign Up
-                </a>
+                </Link>
               </>
             )}
           </div>
