@@ -1,5 +1,6 @@
 import React, { useState  } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Mail,
   Lock,
@@ -264,12 +265,12 @@ const Login = () => {
           <div className="text-center">
             <p className="text-gray-600">
               Don't have an account?{" "}
-              <a
-                href="/signup"
+              <Link
+                to="/signup"
                 className="text-blue-600 hover:text-blue-700 font-medium"
               >
                 Create one here
-              </a>
+              </Link>
             </p>
           </div>
         </form>
