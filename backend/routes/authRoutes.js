@@ -12,12 +12,22 @@ router.get("/me", protect, getMe);
 
 router.post("/upload-image", upload.single("image"), (req, res) => {
   if (!req.file) {
+    console.log("No file uploaded");
     return res.status(400).json({ message: "No file uploaded" });
   }
   // const protocol = process.env.NODE_ENV === "production" ? "https" : req.protocol;
   // const host = process.env.NODE_ENV === "production"  ? "jobtime-backend.onrender.com" : req.get("host");
 
+  // Log environment variables
+  console.log("NODE_ENV:", process.env.NODE_ENV);
+  console.log("BASE_URL:", process.env.BASE_URL);
+
+  // Log request info
+  console.log("req.protocol:", req.protocol);
+  console.log("req.get('host'):", req.get("host"));
+
   const imageUrl = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
+  console.log("Generated imageUrl:", imageUrl); // debug
 
   // const imageUrl = `${protocol}://${host}/uploads/${
   //   req.file.filename
