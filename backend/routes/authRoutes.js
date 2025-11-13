@@ -26,7 +26,7 @@ router.post("/upload-image", upload.single("image"), (req, res) => {
   console.log("req.protocol:", req.protocol);
   console.log("req.get('host'):", req.get("host"));
 
-  const imageUrl = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
+  const imageUrl = `${process.env.BASE_URL}/uploads/${encodeURIComponent(req.file.filename)}`;
   console.log("Generated imageUrl:", imageUrl); // debug
 
   // const imageUrl = `${protocol}://${host}/uploads/${

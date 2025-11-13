@@ -10,6 +10,8 @@ import jobRoutes from "./routes/jobRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
 import savedJobsRoutes from "./routes/savedJobsRoutes.js";
 import analyticsRoutes from "./routes/analyticsRoutes.js";
+import path from "path";
+
 
 
 
@@ -46,6 +48,8 @@ app.use(
 );
 
 app.use(express.json());
+app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
+
 
 // Routes
 app.use("/api/auth", authRoutes);
