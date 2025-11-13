@@ -1,13 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "./apiPaths";
 
-// Helper to convert HTTP to HTTPS
-const getSecureUrl = (url) => {
-  if (!url) return "";
-  return url.replace(/^http:\/\//i, "https://");
-};
-
-
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 80000,
@@ -31,35 +24,16 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-// Response Interceptor (fix image URLs and handle errors)
+// Response Interceptor
 axiosInstance.interceptors.response.use(
   (response) => {
-    // Automatically fix image URLs in response data
-    const fixImageUrls = (data) => {
-      if (Array.isArray(data)) return data.map(fixImageUrls);
-      if (data !== null && typeof data === "object") {
-        const newData = { ...data };
-        Object.keys(newData).forEach((key) => {
-          if (
-            key.toLowerCase().includes("image") &&
-            typeof newData[key] === "string"
-          ) {
-            newData[key] = getSecureUrl(newData[key]);
-          } else if (typeof newData[key] === "object") {
-            newData[key] = fixImageUrls(newData[key]);
-          }
-        });
-        return newData;
-      }
-      return data;
-    };
-
-    response.data = fixImageUrls(response.data);
     return response;
   },
   (error) => {
+    // Handle common errors globally
     if (error.response) {
       if (error.response.status === 401) {
+        // Redirect to login page
         window.location.href = "/";
       } else if (error.response.status === 500) {
         console.error("Server error. Please try again later.");
