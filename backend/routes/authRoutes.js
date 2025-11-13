@@ -14,13 +14,14 @@ router.post("/upload-image", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: "No file uploaded" });
   }
-  const protocol = process.env.NODE_ENV === "production" ? "https" : req.protocol;
-  const host =
-    process.env.NODE_ENV === "production"  ? "jobtime-backend.onrender.com" : req.get("host");
+  // const protocol = process.env.NODE_ENV === "production" ? "https" : req.protocol;
+  // const host = process.env.NODE_ENV === "production"  ? "jobtime-backend.onrender.com" : req.get("host");
 
-  const imageUrl = `${protocol}://${host}/uploads/${
-    req.file.filename
-  }`;
+  const imageUrl = `${process.env.BASE_URL}/uploads/${req.file.filename}`;
+
+  // const imageUrl = `${protocol}://${host}/uploads/${
+  //   req.file.filename
+  // }`;
   res.status(200).json({ imageUrl });
 });
 
